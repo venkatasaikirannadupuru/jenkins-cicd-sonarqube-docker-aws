@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Venkata Sai Kiran | Cloud Engineer Portfolio</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --bg: #08111f;
+            --bg-light: #0f1b2d;
+            --card: #111f33;
+            --border: #233650;
+            --text: #e6edf7;
+            --muted: #9fb0c7;
+            --primary: #38bdf8;
+            --secondary: #818cf8;
+            --success: #22c55e;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 18px 7%;
+
+            background: rgba(8, 17, 31, 0.96);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 90vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 80px 8%;
+
+            background:
+                radial-gradient(circle at 80% 20%, #19365c 0%, transparent 35%),
+                radial-gradient(circle at 20% 80%, #172957 0%, transparent 30%),
+                var(--bg);
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            text-align: center;
+        }
+
+        .hero-tag {
+            display: inline-block;
+
+            padding: 8px 18px;
+            margin-bottom: 25px;
+
+            border: 1px solid var(--primary);
+            border-radius: 30px;
+
+            color: var(--primary);
+            font-size: 14px;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 7vw, 78px);
+            margin-bottom: 10px;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero h2 {
+            font-size: clamp(22px, 4vw, 34px);
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            max-width: 750px;
+            margin: auto;
+
+            color: var(--muted);
+            font-size: 17px;
+        }
+
+        .hero-buttons {
+            margin-top: 35px;
+
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+
+            padding: 12px 24px;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #06111d;
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* GENERAL */
+
+        section {
+            padding: 90px 8%;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 38px;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .section-title p {
+            color: var(--muted);
+        }
+
+        /* ABOUT */
+
+        .about {
+            background: var(--bg-light);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            gap: 30px;
+        }
+
+        .about-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .about-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .about-card p {
+            color: var(--muted);
+        }
+
+        /* SKILLS */
+
+        .skills-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(250px, 1fr));
+
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+
+            padding: 25px;
+
+            border-radius: 14px;
+
+            transition: 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .skill-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .skill-card p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* PROJECTS */
+
+        .projects {
+            background: var(--bg-light);
+        }
+
+        .project-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(300px, 1fr));
+
+            gap: 25px;
+        }
+
+        .project-card {
+            background: var(--card);
+
+            border: 1px solid var(--border);
+
+            border-radius: 15px;
+
+            padding: 30px;
+
+            display: flex;
+            flex-direction: column;
+
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--primary);
+        }
+
+        .project-number {
+            color: var(--primary);
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .project-card h3 {
+            margin: 10px 0;
+            font-size: 21px;
+        }
+
+        .project-tech {
+            color: var(--secondary);
+
+            font-size: 13px;
+
+            margin-bottom: 15px;
+        }
+
+        .project-card ul {
+            padding-left: 20px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .project-card li {
+            margin-bottom: 8px;
+        }
+
+        .project-link {
+            margin-top: auto;
+            padding-top: 20px;
+
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* INTERNSHIP */
+
+        .experience-card {
+            max-width: 900px;
+            margin: auto;
+
+            background: var(--card);
+
+            border: 1px solid var(--border);
+
+            border-left: 4px solid var(--primary);
+
+            padding: 35px;
+
+            border-radius: 15px;
+        }
+
+        .experience-card h3 {
+            color: var(--primary);
+        }
+
+        .experience-card .role {
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .experience-card ul {
+            padding-left: 20px;
+            color: var(--muted);
+        }
+
+        /* TRAINING */
+
+        .training {
+            background: var(--bg-light);
+        }
+
+        .training-card {
+            max-width: 900px;
+            margin: auto;
+
+            background: var(--card);
+
+            border: 1px solid var(--border);
+
+            padding: 35px;
+
+            border-radius: 15px;
+        }
+
+        .training-card h3 {
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .training-card .provider {
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .training-card ul {
+            padding-left: 20px;
+            color: var(--muted);
+        }
+
+        /* EDUCATION */
+
+        .education-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(280px, 1fr));
+
+            gap: 20px;
+        }
+
+        .education-card {
+            background: var(--card);
+
+            border: 1px solid var(--border);
+
+            padding: 25px;
+
+            border-radius: 14px;
+        }
+
+        .education-card h3 {
+            color: var(--primary);
+        }
+
+        .education-card p {
+            color: var(--muted);
+        }
+
+        .grade {
+            color: var(--success) !important;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+
+        /* CONTACT */
+
+        .contact {
+            background: var(--bg-light);
+            text-align: center;
+        }
+
+        .contact-box {
+            max-width: 750px;
+            margin: auto;
+        }
+
+        .contact-box p {
+            color: var(--muted);
+            margin-bottom: 25px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .contact-links a {
+            padding: 12px 20px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            color: var(--text);
+        }
+
+        .contact-links a:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+
+            padding: 30px 20px;
+
+            background: #050b14;
+
+            color: var(--muted);
+
+            font-size: 14px;
+        }
+
+        footer strong {
+            color: var(--primary);
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 768px) {
+
+            nav {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav ul {
+                gap: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 65px 5%;
+            }
+
+            .hero {
+                padding: 60px 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav>
+
+    <div class="logo">
+        SAI KIRAN
+    </div>
+
+    <ul>
+
+        <li>
+            <a href="#about">About</a>
+        </li>
+
+        <li>
+            <a href="#skills">Skills</a>
+        </li>
+
+        <li>
+            <a href="#projects">Projects</a>
+        </li>
+
+        <li>
+            <a href="#experience">Experience</a>
+        </li>
+
+        <li>
+            <a href="#education">Education</a>
+        </li>
+
+        <li>
+            <a href="#contact">Contact</a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+<!-- HERO -->
+
+<header class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-tag">
+            Aspiring Cloud & DevOps Engineer
+        </div>
+
+        <h1>
+            Venkata Sai <span>Kiran</span>
+        </h1>
+
+        <h2>
+            AWS Cloud • Terraform • Docker • Jenkins • Linux
+        </h2>
+
+        <p>
+            Recent engineering graduate with hands-on experience
+            gained through practical projects and technical training.
+            Familiar with cloud infrastructure, application deployment,
+            automation, networking, monitoring, programming, Linux,
+            databases, and version control.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#projects" class="btn btn-primary">
+                View Projects
+            </a>
+
+            <a href="#contact" class="btn btn-secondary">
+                Contact Me
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ABOUT -->
+
+<section id="about" class="about">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>About Me</h2>
+
+            <p>
+                Cloud infrastructure and automation focused fresher
+            </p>
+
+        </div>
+
+
+        <div class="about-grid">
+
+            <div class="about-card">
+
+                <h3>Professional Summary</h3>
+
+                <p>
+                    Recent engineering graduate with hands-on experience
+                    gained through practical projects and technical training.
+                    Familiar with cloud infrastructure, application deployment,
+                    automation, networking, and monitoring.
+                </p>
+
+            </div>
+
+
+            <div class="about-card">
+
+                <h3>Career Objective</h3>
+
+                <p>
+                    Possess a strong foundation in programming, Linux,
+                    databases, and version control. Eager to apply technical
+                    knowledge in a professional environment and grow as an
+                    IT professional.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SKILLS -->
+
+<section id="skills">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Technical Skills</h2>
+
+            <p>Technologies and tools I have worked with</p>
+
+        </div>
+
+
+        <div class="skills-grid">
+
+            <div class="skill-card">
+
+                <h3>☁ Cloud</h3>
+
+                <p>
+                    AWS, EC2, VPC, IAM, S3, ECR, ECS, EKS,
+                    Fargate, Lambda, RDS, DynamoDB, CloudWatch,
+                    SNS, EventBridge
+                </p>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <h3>⚙ Infrastructure as Code</h3>
+
+                <p>
+                    Terraform and AWS CloudFormation
+                </p>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <h3>🔄 CI/CD & Automation</h3>
+
+                <p>
+                    Jenkins, Git, GitHub and AWS CLI
+                </p>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <h3>🐳 Containers</h3>
+
+                <p>
+                    Docker, Amazon ECR, Amazon ECS,
+                    Amazon EKS, Fargate
+                </p>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <h3>🌐 Networking</h3>
+
+                <p>
+                    VPC, Public/Private Subnets, Route Tables,
+                    Security Groups, NACLs, NAT Gateway,
+                    Internet Gateway and Load Balancing
+                </p>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <h3>💻 Programming</h3>
+
+                <p>
+                    Python, SQL and Bash
+                </p>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <h3>🐧 Operating System</h3>
+
+                <p>
+                    Linux
+                </p>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <h3>📊 Monitoring</h3>
+
+                <p>
+                    Amazon CloudWatch, Logs, Metrics
+                    and EventBridge
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PROJECTS -->
+
+<section id="projects" class="projects">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Projects</h2>
+
+            <p>Hands-on cloud and automation projects</p>
+
+        </div>
+
+
+        <div class="project-grid">
+
+
+            <!-- PROJECT 1 -->
+
+            <div class="project-card">
+
+                <div class="project-number">
+                    PROJECT 01
+                </div>
+
+                <h3>
+                    Production-Style AWS 3-Tier Application with EKS
+                </h3>
+
+                <div class="project-tech">
+                    AWS • Terraform • Jenkins • Docker • ECR • EKS • ALB • RDS • CloudWatch
+                </div>
+
+                <ul>
+
+                    <li>
+                        Designed a production-style AWS architecture
+                        combining a 3-tier VPC with containerized
+                        application workloads running on Amazon EKS.
+                    </li>
+
+                    <li>
+                        Provisioned VPC, public/private subnets,
+                        security groups, IAM roles, EKS, ECR,
+                        ALB and PostgreSQL RDS using Terraform.
+                    </li>
+
+                    <li>
+                        Deployed containerized workloads using
+                        Kubernetes Deployments and LoadBalancer
+                        Services with images stored in Amazon ECR.
+                    </li>
+
+                    <li>
+                        Automated infrastructure provisioning,
+                        Docker image builds, ECR publishing and
+                        application deployment through Jenkins and GitHub.
+                    </li>
+
+                </ul>
+
+                <a href="#" class="project-link">
+                    GitHub →
+                </a>
+
+            </div>
+
+
+            <!-- PROJECT 2 -->
+
+            <div class="project-card">
+
+                <div class="project-number">
+                    PROJECT 02
+                </div>
+
+                <h3>
+                    Serverless Employee Management Platform
+                </h3>
+
+                <div class="project-tech">
+                    AWS Lambda • API Gateway • DynamoDB • SNS • CloudWatch • Terraform • Jenkins
+                </div>
+
+                <ul>
+
+                    <li>
+                        Developed a serverless employee management
+                        application with REST APIs for creating,
+                        reading, updating and deleting employee records.
+                    </li>
+
+                    <li>
+                        Integrated API Gateway with Python AWS Lambda
+                        and DynamoDB for serverless processing and
+                        data storage.
+                    </li>
+
+                    <li>
+                        Provisioned Lambda, API Gateway, DynamoDB,
+                        SNS, IAM and CloudWatch using Terraform.
+                    </li>
+
+                    <li>
+                        Automated deployment through Jenkins.
+                    </li>
+
+                </ul>
+
+                <a href="#" class="project-link">
+                    GitHub →
+                </a>
+
+            </div>
+
+
+            <!-- PROJECT 3 -->
+
+            <div class="project-card">
+
+                <div class="project-number">
+                    PROJECT 03
+                </div>
+
+                <h3>
+                    AWS Monitoring & Auto-Healing Platform
+                </h3>
+
+                <div class="project-tech">
+                    CloudWatch • EventBridge • Lambda • SNS • EC2 • Terraform • Jenkins
+                </div>
+
+                <ul>
+
+                    <li>
+                        Built an AWS monitoring platform using
+                        CloudWatch alarms to track EC2 CPU utilization
+                        and send alerts through Amazon SNS.
+                    </li>
+
+                    <li>
+                        Implemented event-driven EC2 recovery using
+                        EventBridge and Lambda to automatically
+                        restart stopped instances.
+                    </li>
+
+                    <li>
+                        Provisioned monitoring, recovery, IAM,
+                        networking and notification infrastructure
+                        using Terraform.
+                    </li>
+
+                    <li>
+                        Automated deployment with Jenkins.
+                    </li>
+
+                </ul>
+
+                <a href="#" class="project-link">
+                    GitHub →
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- INTERNSHIP -->
+
+<section id="experience">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Internship</h2>
+
+            <p>Practical cloud security experience</p>
+
+        </div>
+
+
+        <div class="experience-card">
+
+            <h3>
+                Cloud Security Intern
+            </h3>
+
+            <div class="role">
+                RGUKT Srikakulam
+            </div>
+
+            <h4>
+                Project: Micro-Segmented AWS Network Security
+                using Terraform & Suricata
+            </h4>
+
+            <br>
+
+            <ul>
+
+                <li>
+                    Designed a secure AWS network architecture
+                    with separate public, private application,
+                    and private database subnets using Terraform.
+                </li>
+
+                <li>
+                    Configured VPC networking, route tables,
+                    NAT Gateway and Security Groups to control
+                    communication and isolate application and
+                    database workloads.
+                </li>
+
+                <li>
+                    Deployed Suricata as an open-source network
+                    threat detection tool to monitor traffic,
+                    identify suspicious activity and strengthen
+                    network security.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TRAINING -->
+
+<section id="training" class="training">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Training</h2>
+
+            <p>Hands-on AWS cloud training</p>
+
+        </div>
+
+
+        <div class="training-card">
+
+            <h3>
+                AWS Cloud Training
+            </h3>
+
+            <div class="provider">
+                Rishi Online Training
+            </div>
+
+            <ul>
+
+                <li>
+                    Gained hands-on experience with AWS cloud
+                    infrastructure including VPC, EC2, IAM, S3,
+                    ELB, RDS, Route 53, EFS, Lambda and CloudWatch.
+                </li>
+
+                <li>
+                    Practiced Infrastructure as Code and cloud
+                    automation using Terraform, AWS CloudFormation
+                    and AWS CLI.
+                </li>
+
+                <li>
+                    Worked with Linux administration and networking.
+                </li>
+
+                <li>
+                    Worked with Docker, Amazon ECS, Amazon ECR,
+                    Git, GitHub and Jenkins for containerized
+                    application deployment, version control
+                    and CI/CD pipelines.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- EDUCATION -->
+
+<section id="education">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Education</h2>
+
+            <p>Academic background</p>
+
+        </div>
+
+
+        <div class="education-grid">
+
+
+            <div class="education-card">
+
+                <h3>
+                    MVGR College of Engineering
+                </h3>
+
+                <p>
+                    Bachelor of Technology –
+                    Electronics and Communication Engineering
+                </p>
+
+                <p>
+                    2021 – 2025
+                </p>
+
+                <p class="grade">
+                    CGPA: 8.35 / 10
+                </p>
+
+            </div>
+
+
+            <div class="education-card">
+
+                <h3>
+                    Sri Chaitanya Junior College
+                </h3>
+
+                <p>
+                    Class XII – MPC
+                </p>
+
+                <p>
+                    2019 – 2021
+                </p>
+
+                <p class="grade">
+                    95%
+                </p>
+
+            </div>
+
+
+            <div class="education-card">
+
+                <h3>
+                    Harshavardhana High School
+                </h3>
+
+                <p>
+                    Class X
+                </p>
+
+                <p>
+                    2018 – 2019
+                </p>
+
+                <p class="grade">
+                    CGPA: 9.5 / 10
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section id="contact" class="contact">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Let's Connect</h2>
+
+            <p>
+                Open to entry-level opportunities in Cloud,
+                AWS and related IT roles.
+            </p>
+
+        </div>
+
+
+        <div class="contact-box">
+
+            <p>
+                Interested in discussing cloud infrastructure,
+                AWS, automation, CI/CD or career opportunities?
+            </p>
+
+
+            <div class="contact-links">
+
+                <a href="mailto:sn317600@gmail.com">
+                    📧 Email
+                </a>
+
+                <a href="#" target="_blank">
+                    💻 GitHub
+                </a>
+
+                <a href="#" target="_blank">
+                    🔗 LinkedIn
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+        © 2026 <strong>Venkata Sai Kiran</strong>
+    </p>
+
+    <p>
+        Cloud Infrastructure • AWS • Terraform • Docker • Jenkins • Linux
+    </p>
+
+</footer>
+
+</body>
+</html>
