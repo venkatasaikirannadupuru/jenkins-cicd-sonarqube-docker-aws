@@ -5,6 +5,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = "sai-kiran-portfolio"
         DOCKER_CONTAINER = "sai-kiran-portfolio"
+        SONAR_SCANNER_HOME = tool 'SonarQubeScanner'
     }
 
     stages {
@@ -18,24 +19,32 @@ pipeline {
         stage('Build & Test') {
             steps {
                 echo 'Building and testing portfolio application...'
+
                 sh 'test -f app/index.html'
                 sh 'test -f Dockerfile'
+
                 echo 'Build validation successful.'
             }
         }
 
         stage('SonarQube Analysis') {
             steps {
-                echo 'Running SonarQube analysis...'
-                // SonarQube configuration will be added after
-                // the SonarQube server is installed and configured.
+                withSonarQubeEnv('SonarQube') {
+                    sh '''
+                        ${SONAR_SCANNER_HOME}/bin/sonar-scanner \
+                          -Dsonar.projectKey=sai-kiran-portfolio \
+                          -Dsonar.projectName="Sai Kiran Portfolio" \
+                          -Dsonar.sources=app
+                    '''
+                }
             }
         }
 
         stage('Quality Gate') {
             steps {
-                echo 'Waiting for SonarQube Quality Gate...'
-                // Quality Gate configuration will be added later.
+                timeout(time: 5, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
             }
         }
 
@@ -48,7 +57,9 @@ pipeline {
         stage('Docker Test') {
             steps {
                 sh 'docker run -d --name ${DOCKER_CONTAINER}-test -p 8081:80 ${DOCKER_IMAGE}:latest'
+
                 sh 'sleep 5'
+
                 sh 'curl -f http://localhost:8081'
             }
         }
@@ -58,10 +69,10 @@ pipeline {
                 sh 'docker rm -f ${DOCKER_CONTAINER}-test || true'
             }
         }
-
     }
 
     post {
+
         success {
             echo 'CI pipeline completed successfully.'
         }
