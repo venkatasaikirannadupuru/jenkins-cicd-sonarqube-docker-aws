@@ -30,12 +30,20 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    sh '''
-                        ${SONAR_SCANNER_HOME}/bin/sonar-scanner \
-                          -Dsonar.projectKey=sai-kiran-portfolio \
-                          -Dsonar.projectName="Sai Kiran Portfolio" \
-                          -Dsonar.sources=app
-                    '''
+                    withCredentials([
+                        string(
+                            credentialsId: 'sonarqube-token',
+                            variable: 'SONAR_TOKEN'
+                        )
+                    ]) {
+                        sh '''
+                            ${SONAR_SCANNER_HOME}/bin/sonar-scanner \
+                              -Dsonar.projectKey=sai-kiran-portfolio \
+                              -Dsonar.projectName="Sai Kiran Portfolio" \
+                              -Dsonar.sources=app \
+                              -Dsonar.token=$SONAR_TOKEN
+                        '''
+                    }
                 }
             }
         }
@@ -57,9 +65,7 @@ pipeline {
         stage('Docker Test') {
             steps {
                 sh 'docker run -d --name ${DOCKER_CONTAINER}-test -p 8081:80 ${DOCKER_IMAGE}:latest'
-
                 sh 'sleep 5'
-
                 sh 'curl -f http://localhost:8081'
             }
         }
